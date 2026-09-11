@@ -1,0 +1,11 @@
+{
+  "name": "prototype-outils-ia",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Radar IA — questionnaire de recommandation d'outils d'IA générative pour la recherche universitaire (Bibliothèques UdeM).",
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "start": "python3 -m http.server 8000"
+  }
+}
