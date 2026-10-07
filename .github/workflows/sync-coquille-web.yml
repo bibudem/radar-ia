@@ -1,0 +1,25 @@
+# Prévient coquille-web qu'il faut recopier ce site dans static/ (voir
+# bibudem/coquille-web/.github/workflows/sync-depots.yml).
+name: Synchroniser avec coquille-web
+
+on:
+  push:
+    branches: [main]
+    # Ces fichiers ne sont pas copiés sur le site : inutile de déclencher une PR.
+    paths-ignore:
+      - README.md
+      - 'tests/**'
+      - package.json
+      - '.github/**'
+  workflow_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.COQUILLE_WEB_DISPATCH }}
+          repository: bibudem/coquille-web
+          event-type: sync-depot
+          client-payload: '{"depot": "radar-ia"}'
